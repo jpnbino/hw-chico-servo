@@ -43,6 +43,30 @@
 
 #include "mcc_generated_files/mcc.h"
 
+//**************************************************************************************
+// mydelay_ms
+// This routine will delay x number of millseconds.
+// Inputs: unsigned int cycles determines how many milliseconds are delayed
+//**************************************************************************************
+void mydelay_ms(unsigned int cycles) {
+    unsigned int i;
+
+    for (i = 1; i <= cycles; i++) {
+        __delay_ms(1);
+    }
+}
+//**************************************************************************************
+// mydelay_sec
+// This routine will delay x number of seconds.
+// Inputs: unsigned int cycles determines how many seconds are delayed
+//**************************************************************************************
+void mydelay_sec(unsigned int cycles) {
+    unsigned int i;
+
+    for (i = 1; i <= cycles; i++) {
+        mydelay_ms(1000);
+    }
+}
 /*
                          Main application
  */
@@ -65,13 +89,22 @@ void main(void)
 
     // Disable the Peripheral Interrupts
     //INTERRUPT_PeripheralInterruptDisable();
-
+    uint8_t i = 0 ;
     while (1)
     {
         // Add your application code
         IO_RA5_Toggle();
         __delay_ms(300);
-        
+        for (i=30;i<=61;i=i++)             // do a smooth rotation from right to left
+        {
+            EPWM1_LoadDutyValue(i);
+            mydelay_ms(50);
+        }
+        for (i=61;i>=30;i=i--)             // do a smooth rotation from right to left
+        {
+            EPWM1_LoadDutyValue(i);
+            mydelay_ms(20);
+        }
     }
 }
 /**
