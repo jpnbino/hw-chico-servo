@@ -71,6 +71,27 @@ void main(void)
         // Add your application code
         printf("\n\r Type something\n\r ");
 
+        uint16_t convertedValue;
+
+        convertedValue = ADC_GetConversion(channel_AN6);
+        if (convertedValue > 500)
+        {
+            IO_RA5_SetLow();
+        }
+        else
+        {
+            IO_RA5_SetHigh();   
+        }
+        
+        convertedValue = ADC_GetConversion(channel_AN3);
+        if (convertedValue > 500)
+        {
+            EPWM1_LoadDutyValue(30);
+        }
+        else
+        {
+            EPWM1_LoadDutyValue(40);   
+        }     
 #if 0 
         uint8_t i = 0 ;
         for (i=30;i<=61;i=i++)             // do a smooth rotation from right to left
