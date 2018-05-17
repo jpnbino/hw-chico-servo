@@ -16,6 +16,8 @@
         <itemPath>mcc_generated_files/tmr0.h</itemPath>
         <itemPath>mcc_generated_files/adc.h</itemPath>
       </logicalFolder>
+      <itemPath>voltimeter.h</itemPath>
+      <itemPath>voltimeter_cfg.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -38,6 +40,8 @@
         <itemPath>mcc_generated_files/adc.c</itemPath>
       </logicalFolder>
       <itemPath>main.c</itemPath>
+      <itemPath>voltimeter.c</itemPath>
+      <itemPath>voltimeter_cfg.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -46,6 +50,9 @@
       <itemPath>palhaservo.mc3</itemPath>
     </logicalFolder>
   </logicalFolder>
+  <sourceRootList>
+    <Elem>.</Elem>
+  </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
     <conf name="default" type="2">
