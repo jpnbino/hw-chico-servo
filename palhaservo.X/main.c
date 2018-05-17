@@ -66,14 +66,16 @@ void main(void)
     // Disable the Peripheral Interrupts
     //INTERRUPT_PeripheralInterruptDisable();
     
+    printf("\n\r here we go \n\r ");
     while (1)
     {
         // Add your application code
-        printf("\n\r Type something\n\r ");
+        
 
         uint16_t convertedValue;
 
         convertedValue = ADC_GetConversion(channel_AN6);
+        printf("chan6 %i ", convertedValue);
         if (convertedValue > 500)
         {
             IO_RA5_SetLow();
@@ -84,7 +86,10 @@ void main(void)
         }
         
         convertedValue = ADC_GetConversion(channel_AN3);
-        if (convertedValue > 500)
+        printf("chan3 %i ", convertedValue);
+        EPWM1_LoadDutyValue((convertedValue)>>3);
+#if 0 
+        if (convertedValue > 250)
         {
             EPWM1_LoadDutyValue(30);
         }
@@ -92,6 +97,7 @@ void main(void)
         {
             EPWM1_LoadDutyValue(40);   
         }     
+#endif
 #if 0 
         uint8_t i = 0 ;
         for (i=30;i<=61;i=i++)             // do a smooth rotation from right to left
