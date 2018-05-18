@@ -48,9 +48,9 @@ and ground
 #define RESISTANCE_R2 10000
 
 /** Defines positive voltage reference */
-#define VOLTAGE_POS_REF 33
+#define POSITIVE_VREF 33
 /** Defines negative voltage reference */
-#define VOLTAGE_NEG_REF 0
+#define NEGATIVE_VREF 0
 
 /**
  *  Configuration table
@@ -60,7 +60,7 @@ const VoltimeterConfig_t VoltimeterConfig[] =
  {
 //		ADC			Negative 			Positive 			Topology				RESISTOR		RESISTOR
 //		Channel		Voltage Ref 		Voltage Ref										R1				R2
-	{channel_AN3, 	VOLTAGE_NEG_REF,	VOLTAGE_POS_REF, VOLTIMETER_RESISTOR_DIVIDER, RESISTANCE_R1, RESISTANCE_R2}
+	{channel_AN3, 	NEGATIVE_VREF,	POSITIVE_VREF, VOLTIMETER_RESISTOR_DIVIDER, RESISTANCE_R1, RESISTANCE_R2}
  };
 
 /**

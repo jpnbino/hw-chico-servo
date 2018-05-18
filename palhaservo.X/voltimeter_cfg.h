@@ -5,7 +5,7 @@
     Embedded Things
 
   @File Name
-    voltimeter.h
+    voltimeter_cfg.h
 
   @Summary
      This is the voltimeter implementation source file.
@@ -25,8 +25,8 @@
     Copyright
 */
 
-#ifndef VOLTIMETER_H
-#define VOLTIMETER_H
+#ifndef VOLTIMETER_CFG_H
+#define VOLTIMETER_CFG_H
 
 /**
   Section: Included Files
@@ -49,7 +49,7 @@ typedef struct
 {
 	uint8_t channel; 		 /** ADC channel*/
 	uint8_t negative_vref;  /** Positive voltage reference*/
-	uint8_t Positive_vref;  /** Positive voltage reference*/
+	uint8_t positive_vref;  /** Positive voltage reference*/
 	uint8_t topology;       /** Circuit topology*/ 
     uint16_t resistance1;    /** Resistor division factor*/ 
     uint16_t resistance2;    /** Resistor division factor*/ 

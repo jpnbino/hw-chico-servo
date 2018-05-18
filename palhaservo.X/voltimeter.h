@@ -34,7 +34,7 @@
 
 #include <xc.h>
 #include <stdint.h>
-#include <stdbool.h>
+#include "voltimeter_cfg.h"
 
 #ifdef __cplusplus  // Provide C++ Compatibility
 
@@ -45,14 +45,7 @@
 /**
   Section: Data Types Definitions
 */
-typedef struct
-{
-	uint8_t Channel; 		 /** ADC channel*/
-	uint8_t negative_vref; /** Positive voltage reference*/
-	uint8_t Positive_vref; /** Positive voltage reference*/
-	uint8_t divider_factor; /** Resistor division factor*/ 
-	
-}VoltimeterConfig_t;
+
 
 /**
  *  result of Voltage Read

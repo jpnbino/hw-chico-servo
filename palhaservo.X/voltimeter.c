@@ -28,11 +28,8 @@
 /**
   Section: Included Files
 */
-
-#include <xc.h>
-#include "voltimeter.h"
 #include "mcc_generated_files/adc.h"
-
+#include "voltimeter.h"
 /**
   Section: Macro Declarations
 */
@@ -45,7 +42,7 @@ where,
 So, 
 	R1/(R1+R2) is the RESISTOR_DIVIDER_FACTOR
 */
-#define RESISTOR_DIVIDER_FACTOR 2
+
 
 /**
   Section: Global Variables
@@ -58,12 +55,12 @@ uint8_t divider_factor = 0;
 /**
   Section: Voltimeter Module APIs
 */
-#if 0 
-void Voltimeter_Init(const VoltimeterConfig_t * const config)
+
+void Voltimeter_Init( const VoltimeterConfig_t * const config)
 {
-    
+
 }
-#endif
+
 uint8_t Voltimeter_Read ( void )
 {
     uint16_t voltage = 0;
