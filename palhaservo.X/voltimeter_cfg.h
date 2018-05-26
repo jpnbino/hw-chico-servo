@@ -41,18 +41,23 @@
     extern "C" {
 
 #endif
-
+/**
+  Section: Macro Declarations
+*/
+        
+/** The max converted value in the adc */
+#define ADC_MAX_VALUE 1023U
 /**
   Section: Data Types Definitions
 */
 typedef struct
 {
 	uint8_t channel; 		 /** ADC channel*/
-	uint8_t negative_vref;  /** Positive voltage reference*/
-	uint8_t positive_vref;  /** Positive voltage reference*/
+	uint16_t negative_vref;  /** Positive voltage reference*/
+	uint16_t positive_vref;  /** Positive voltage reference*/
 	uint8_t topology;       /** Circuit topology*/ 
-    uint16_t resistance1;    /** Resistor division factor*/ 
-    uint16_t resistance2;    /** Resistor division factor*/ 
+    uint32_t resistance1;    /** Resistor division factor*/ 
+    uint32_t resistance2;    /** Resistor division factor*/ 
 	
 }VoltimeterConfig_t;
 

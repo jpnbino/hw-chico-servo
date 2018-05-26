@@ -112,7 +112,7 @@ void Voltimeter_Init( const VoltimeterConfig_t * const config);
     voltage_value = Voltimeter_Read();
     </code>
 */
-uint8_t Voltimeter_Read( void );
+uint16_t Voltimeter_Read( void );
 
 
 #ifdef __cplusplus  // Provide C++ Compatibility

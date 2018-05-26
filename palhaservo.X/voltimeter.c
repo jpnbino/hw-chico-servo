@@ -12,6 +12,27 @@
 
   @Description
     This source file provides implementations to read voltage on a selected analog channel.
+	Voltage calculation from ADC is given:
+	
+	          Resistive 		ADC voltage step                 
+			divider factor
+			  
+			    (r1)      (positive_vref - negative_vref)     
+	Voltage = --------- X -------------------------------  X  adc_result
+			  (r1 + r2)	         ADC_MAX_VALUE
+	
+     where,
+        r1 - can be up to 500000 [Ohm].
+        r2 - can be up to 500000 [Ohm].
+        ADC_MAX_VALUE - can be up to (2^12)-1 or 4095. A 12-bit ADC.
+        positive_vref - is the positive voltage reference for the ADC.
+        negative_vref - is the negative voltage reference for the ADC.
+        ADC_Result - is the result of the ADC conversion
+ 
+        All equation between equals signal and adc_result is calculated as 
+        convertion_factor.
+        The result is given in millivolts.
+  
     Development Information :
         Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs - 1.65.2
         Device            :  PIC16LF1824
@@ -24,7 +45,10 @@
 /*
     Copyright
 */
-
+/**
+  Section: Abbreviation
+    vref stands for Voltage reference
+*/
 /**
   Section: Included Files
 */
@@ -47,10 +71,10 @@ So,
 /**
   Section: Global Variables
 */
-uint8_t voltage_positive_ref = 0;
-uint8_t voltage_negative_ref = 0;
-uint8_t adc_battery_channel = 0;
-uint8_t divider_factor = 0;
+static uint16_t positive_vref = 0;
+static uint16_t negative_vref = 0;
+static uint8_t adc_battery_channel = 0;
+static uint32_t convertion_factor = 0;
 
 /**
   Section: Voltimeter Module APIs
@@ -58,14 +82,44 @@ uint8_t divider_factor = 0;
 
 void Voltimeter_Init( const VoltimeterConfig_t * const config)
 {
-
+    //r1 and r2 are the resistors from a voltage divider
+    uint32_t r1,r2;
+    uint8_t circuit_topology = 0;
+    
+    adc_battery_channel = config->channel;
+    
+    
+    circuit_topology = config->topology;
+    if ( circuit_topology == VOLTIMETER_RESISTOR_DIVIDER)
+    {
+    r1 = config->resistance1;
+    r2 = config->resistance2;
+    }
+    else if (circuit_topology == VOLTIMETER_DIRECT_INPUT)
+    {
+        /**These numbers are just representation of this topology so that r1/(r1+r2) equals 1
+        */
+        r1 = 1;
+        r2 = 0;
+    }
+    
+    positive_vref = config->positive_vref;
+    negative_vref = config->negative_vref;
+   
+    
+    
+    convertion_factor = ((r1)*(positive_vref - negative_vref))/((r1+r2)*ADC_MAX_VALUE);
 }
 
-uint8_t Voltimeter_Read ( void )
+uint16_t Voltimeter_Read ( void )
 {
+
+    uint16_t adc_result = 0;
     uint16_t voltage = 0;
-	voltage = ADC_GetConversion(adc_battery_channel);
 	
+    adc_result = ADC_GetConversion(adc_battery_channel);
+	
+    voltage = convertion_factor * adc_result;
     return voltage;
 }
 

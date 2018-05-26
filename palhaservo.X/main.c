@@ -43,6 +43,8 @@
 
 #include "mcc_generated_files/mcc.h"
 
+#include "voltimeter_cfg.h"
+#include "voltimeter.h"
 /*
                          Main application
  */
@@ -67,6 +69,9 @@ void main(void)
     //INTERRUPT_PeripheralInterruptDisable();
     
     printf("\n\r here we go \n\r ");
+    const VoltimeterConfig_t * voltimeter_cfg = Voltimeter_ConfigGet();
+    Voltimeter_Init(voltimeter_cfg);
+    
     while (1)
     {
         // Add your application code
@@ -74,9 +79,9 @@ void main(void)
 
         uint16_t convertedValue;
 
-        convertedValue = ADC_GetConversion(channel_AN6);
+        convertedValue = Voltimeter_Read();
         printf("chan6 %i ", convertedValue);
-        if (convertedValue > 500)
+        if (convertedValue > 1249)
         {
             IO_RA5_SetLow();
         }
