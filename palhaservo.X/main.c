@@ -90,7 +90,7 @@ void main(void)
             IO_RA5_SetHigh();   
         }
         
-        convertedValue = ADC_GetConversion(channel_AN3);
+        convertedValue = ADC_GetConversion(channel_AN6);
         printf("chan3 %i ", convertedValue);
         EPWM1_LoadDutyValue((convertedValue)>>3);
 #if 0 

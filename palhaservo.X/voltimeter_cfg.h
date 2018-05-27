@@ -45,8 +45,29 @@
   Section: Macro Declarations
 */
         
+/** When using voltage division in the analog input pin:
+R1 - Defines the value of the resistor connected between the 
+Voltage to be read and the ADC input pin its value is in OHM
+unit. 
+R2 - defines the resistor value connected between ADC input
+and ground
+
+Resistance is given in OHM unit
+*/
+#define RESISTANCE_R1 10000
+#define RESISTANCE_R2 10000
+
+
+/** Voltage is represented in millivolts*/
+/** Defines positive voltage reference */
+#define POSITIVE_VREF 3230U
+/** Defines negative voltage reference */
+#define NEGATIVE_VREF 0U      
 /** The max converted value in the adc */
 #define ADC_MAX_VALUE 1023U
+        
+        
+        
 /**
   Section: Data Types Definitions
 */
@@ -91,7 +112,7 @@ typedef enum
     None
 
   @Comment
-    
+    Check configuration table VoltimeterConfig[] 
 
   @Example
     <code>

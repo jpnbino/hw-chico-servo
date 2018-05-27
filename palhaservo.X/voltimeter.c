@@ -74,7 +74,10 @@ So,
 static uint16_t positive_vref = 0;
 static uint16_t negative_vref = 0;
 static uint8_t adc_battery_channel = 0;
-static uint32_t convertion_factor = 0;
+static float convertion_factor = 0;
+static float adc_voltage_step = 0;
+static float divider_factor = 0;
+
 
 /**
   Section: Voltimeter Module APIs
@@ -92,8 +95,8 @@ void Voltimeter_Init( const VoltimeterConfig_t * const config)
     circuit_topology = config->topology;
     if ( circuit_topology == VOLTIMETER_RESISTOR_DIVIDER)
     {
-    r1 = config->resistance1;
-    r2 = config->resistance2;
+        r1 = config->resistance1;
+        r2 = config->resistance2;
     }
     else if (circuit_topology == VOLTIMETER_DIRECT_INPUT)
     {
@@ -106,9 +109,17 @@ void Voltimeter_Init( const VoltimeterConfig_t * const config)
     positive_vref = config->positive_vref;
     negative_vref = config->negative_vref;
    
+    /**
+     * When performing division without floating-point proper care should be 
+     * taken about rounding integers. In this a division 
+     * 
+     */
     
+    divider_factor = (float)(r1+r2)/r1;
+    adc_voltage_step = (float)(positive_vref - negative_vref)/(ADC_MAX_VALUE);
+    convertion_factor = divider_factor * adc_voltage_step;
     
-    convertion_factor = ((r1)*(positive_vref - negative_vref))/((r1+r2)*ADC_MAX_VALUE);
+    //convertion_factor =(float)(((r1)/(r1+r2))*((positive_vref - negative_vref)/(ADC_MAX_VALUE)));
 }
 
 uint16_t Voltimeter_Read ( void )
@@ -119,7 +130,7 @@ uint16_t Voltimeter_Read ( void )
 	
     adc_result = ADC_GetConversion(adc_battery_channel);
 	
-    voltage = convertion_factor * adc_result;
+    voltage = (convertion_factor * adc_result);
     return voltage;
 }
 
