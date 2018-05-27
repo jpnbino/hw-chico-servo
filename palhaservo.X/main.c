@@ -45,6 +45,10 @@
 
 #include "voltimeter_cfg.h"
 #include "voltimeter.h"
+
+#include "knob_cfg.h"
+#include "knob.h"
+
 /*
                          Main application
  */
@@ -72,6 +76,9 @@ void main(void)
     const VoltimeterConfig_t * voltimeter_cfg = Voltimeter_ConfigGet();
     Voltimeter_Init(voltimeter_cfg);
     
+    const KnobConfig_t * knob_cfg = Knob_ConfigGet();
+    Knob_Init(knob_cfg);
+    
     while (1)
     {
         // Add your application code
@@ -81,7 +88,7 @@ void main(void)
 
         convertedValue = Voltimeter_Read();
         printf("chan6 %i ", convertedValue);
-        if (convertedValue > 1249)
+        if (convertedValue > 4900)
         {
             IO_RA5_SetLow();
         }
@@ -90,7 +97,7 @@ void main(void)
             IO_RA5_SetHigh();   
         }
         
-        convertedValue = ADC_GetConversion(channel_AN6);
+        convertedValue = Knob_Position_Read();
         printf("chan3 %i ", convertedValue);
         EPWM1_LoadDutyValue((convertedValue)>>3);
 #if 0 

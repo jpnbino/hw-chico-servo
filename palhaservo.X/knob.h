@@ -1,17 +1,18 @@
 /**
-  Voltimeter Module API Header File
+  Knob Module API Header File
 
   @Company
     Embedded Things
 
   @File Name
-    voltimeter.h
+    knob.h
 
   @Summary
-     This is the voltimeter implementation source file.
+     This is the knob implementation source file.
 
   @Description
-    This header file provides APIs for voltimeter functionality.
+    This header file provides APIs for knob functionality.
+	
     Generation Information :
         Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs - 1.65.2
         Device            :  PIC16LF1824
@@ -25,8 +26,8 @@
     Copyright
 */
 
-#ifndef VOLTIMETER_H
-#define VOLTIMETER_H
+#ifndef KNOB_H
+#define KNOB_H
 
 /**
   Section: Included Files
@@ -34,7 +35,7 @@
 
 #include <xc.h>
 #include <stdint.h>
-#include "voltimeter_cfg.h"
+#include "knob_cfg.h"
 
 #ifdef __cplusplus  // Provide C++ Compatibility
 
@@ -48,21 +49,21 @@
 
 
 /**
- *  result of Voltage Read
+ *  result of Knob Position Read
  */
 
-typedef uint8_t voltage_read_t;
+typedef uint16_t knob_read_t;
 
 /**
-  Section: Voltimeter Module APIs
+  Section: Knob Module APIs
 */
 
 /**
   @Summary
-    Initializes the Voltimeter
+    Initializes the Knob
 
   @Description
-    This routine must be called before any other Voltimeter routine is called.
+    This routine must be called before any other Knob routine is called.
     This routine should only be called once during system initialization.
 
   @Preconditions
@@ -79,15 +80,15 @@ typedef uint8_t voltage_read_t;
 
   @Example
     <code>
-    uint16_t voltage_value;
+    uint16_t knob_position;
 
     const VoltimeterConfig_t * voltimeter_cfg = Voltimeter_ConfigGet();
     Voltimeter_Init(voltimeter_cfg);
  
-    voltage_value = Voltimeter_Read();
+    knob_position = Knob_Position_Read();
     </code>
 */
-void Voltimeter_Init( const VoltimeterConfig_t * const config);
+void Knob_Init( const KnobConfig_t * const config);
 
 /**
   @Summary
@@ -98,7 +99,7 @@ void Voltimeter_Init( const VoltimeterConfig_t * const config);
     available
 
   @Preconditions
-    Voltimeter_Init() function should have been called before calling this function.
+    Knob_Init() function should have been called before calling this function.
 
   @Returns
     Returs the voltage value.
@@ -108,13 +109,13 @@ void Voltimeter_Init( const VoltimeterConfig_t * const config);
 
   @Example
     <code>
-    uint8_t voltage_value;
+    uint16_t knob_position;
 
-    Voltimeter_Initialize();
-    voltage_value = Voltimeter_Read();
+    Knob_Init();
+    knob_position = Knob_Position_Read();
     </code>
 */
-uint16_t Voltimeter_Read( void );
+uint16_t Knob_Position_Read( void );
 
 
 #ifdef __cplusplus  // Provide C++ Compatibility

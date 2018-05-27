@@ -18,6 +18,8 @@
       </logicalFolder>
       <itemPath>voltimeter.h</itemPath>
       <itemPath>voltimeter_cfg.h</itemPath>
+      <itemPath>knob_cfg.h</itemPath>
+      <itemPath>knob.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -42,6 +44,8 @@
       <itemPath>main.c</itemPath>
       <itemPath>voltimeter.c</itemPath>
       <itemPath>voltimeter_cfg.c</itemPath>
+      <itemPath>knob.c</itemPath>
+      <itemPath>knob_cfg.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
