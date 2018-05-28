@@ -55,6 +55,16 @@
 typedef uint16_t servo_position_t;
 
 /**
+ *  SERVOMOTOR ERROR CODE
+ */
+
+typedef enum{
+        SERVO_OK,
+        POS_ERROR,     
+            
+}Servo_Error_Code_t;
+
+/**
   Section: Servomotor Module APIs
 */
 

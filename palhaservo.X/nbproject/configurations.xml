@@ -22,6 +22,7 @@
       <itemPath>knob.h</itemPath>
       <itemPath>servomotor.h</itemPath>
       <itemPath>servomotor_cfg.h</itemPath>
+      <itemPath>utils.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -50,6 +51,7 @@
       <itemPath>knob_cfg.c</itemPath>
       <itemPath>servomotor.c</itemPath>
       <itemPath>servomotor_cfg.c</itemPath>
+      <itemPath>utils.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"

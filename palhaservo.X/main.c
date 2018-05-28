@@ -43,6 +43,8 @@
 
 #include "mcc_generated_files/mcc.h"
 
+#include "utils.h"
+
 #include "voltimeter_cfg.h"
 #include "voltimeter.h"
 
@@ -102,7 +104,8 @@ void main(void)
         
         convertedValue = Knob_Position_Read();
         printf("chan3 %i ", convertedValue);
-        Servomotor_Set_Position(SERVO1,(convertedValue)>>3);
+        convertedValue = Rescale_Value(convertedValue,200,800,24,63);
+        Servomotor_Set_Position(SERVO1,convertedValue);
 #if 0 
         if (convertedValue > 250)
         {

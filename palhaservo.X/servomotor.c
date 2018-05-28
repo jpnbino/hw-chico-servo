@@ -55,6 +55,16 @@ void Servomotor_Init( const ServoConfig_t * const config)
 
 void Servomotor_Set_Position ( uint8_t servo_id, uint16_t pos )
 {
+    if ( pos < 24 )
+    {
+        return;
+    }
+    
+    if (pos > 63)
+    {
+        return;
+    }
+    
 	switch ( servo_id )
 	{
 		case SERVO1:
