@@ -49,6 +49,8 @@
 #include "knob_cfg.h"
 #include "knob.h"
 
+#include "servomotor_cfg.h"
+#include "servomotor.h"
 /*
                          Main application
  */
@@ -73,6 +75,7 @@ void main(void)
     //INTERRUPT_PeripheralInterruptDisable();
     
     printf("\n\r here we go \n\r ");
+    
     const VoltimeterConfig_t * voltimeter_cfg = Voltimeter_ConfigGet();
     Voltimeter_Init(voltimeter_cfg);
     
@@ -99,7 +102,7 @@ void main(void)
         
         convertedValue = Knob_Position_Read();
         printf("chan3 %i ", convertedValue);
-        EPWM1_LoadDutyValue((convertedValue)>>3);
+        Servomotor_Set_Position(SERVO1,(convertedValue)>>3);
 #if 0 
         if (convertedValue > 250)
         {
