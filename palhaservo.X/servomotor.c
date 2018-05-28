@@ -55,12 +55,12 @@ void Servomotor_Init( const ServoConfig_t * const config)
 
 void Servomotor_Set_Position ( uint8_t servo_id, uint16_t pos )
 {
-    if ( pos < 24 )
+    if ( pos < SERVO_DUTY_MIN )
     {
         return;
     }
     
-    if (pos > 63)
+    if (pos > SERVO_DUTY_MAX)
     {
         return;
     }

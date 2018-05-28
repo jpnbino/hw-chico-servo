@@ -46,15 +46,19 @@
 */
         
 
-/** Voltage is represented in millivolts*/
-/** Defines positive voltage reference */
-#define POSITIVE_VREF 3230U
-/** Defines negative voltage reference */
-#define NEGATIVE_VREF 0U      
-/** The max converted value in the adc */
-#define ADC_MAX_VALUE 1023U
-        
-        
+/** HARDWARE dependent definition
+ * This values were found based on
+ * practical test using a 9g micro
+ * servomotor.
+ * with a period of 19.968ms.
+ * the minor servo angle was at
+ * 770us pulse and the longest
+ * at 2.013ms pulse.
+ */
+/** CCPR Register values - 770us pulse*/
+#define SERVO_DUTY_MIN 24U
+/** CCPR Register values - 770us pulse*/
+#define SERVO_DUTY_MAX 63U      
         
 /**
   Section: Data Types Definitions
