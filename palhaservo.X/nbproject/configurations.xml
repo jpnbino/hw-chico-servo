@@ -23,6 +23,7 @@
       <itemPath>servomotor.h</itemPath>
       <itemPath>servomotor_cfg.h</itemPath>
       <itemPath>utils.h</itemPath>
+      <itemPath>task_battery_manager.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -52,6 +53,7 @@
       <itemPath>servomotor.c</itemPath>
       <itemPath>servomotor_cfg.c</itemPath>
       <itemPath>utils.c</itemPath>
+      <itemPath>task_battery_manager.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"

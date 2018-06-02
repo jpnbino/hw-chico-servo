@@ -53,6 +53,8 @@
 
 #include "servomotor_cfg.h"
 #include "servomotor.h"
+
+#include "task_battery_manager.h"
 /*
                          Main application
  */
@@ -90,17 +92,9 @@ void main(void)
         
 
         uint16_t convertedValue;
+        
+        Task_Battery_Manager();
 
-        convertedValue = Voltimeter_Read();
-        printf("chan6 %i ", convertedValue);
-        if (convertedValue > 4900)
-        {
-            IO_RA5_SetLow();
-        }
-        else
-        {
-            IO_RA5_SetHigh();   
-        }
         
         convertedValue = Knob_Position_Read();
         printf("chan3 %i ", convertedValue);

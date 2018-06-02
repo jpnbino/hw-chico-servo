@@ -51,7 +51,7 @@
  *  result of Voltage Read
  */
 
-typedef uint8_t voltage_read_t;
+typedef uint16_t voltage_read_t;
 
 /**
   Section: Voltimeter Module APIs
@@ -114,7 +114,7 @@ void Voltimeter_Init( const VoltimeterConfig_t * const config);
     voltage_value = Voltimeter_Read();
     </code>
 */
-uint16_t Voltimeter_Read( void );
+voltage_read_t Voltimeter_Read( void );
 
 
 #ifdef __cplusplus  // Provide C++ Compatibility
