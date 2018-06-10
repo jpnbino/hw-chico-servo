@@ -43,8 +43,6 @@
 
 #include "mcc_generated_files/mcc.h"
 
-#include "utils.h"
-
 #include "voltimeter_cfg.h"
 #include "voltimeter.h"
 
@@ -55,6 +53,9 @@
 #include "servomotor.h"
 
 #include "task_battery_manager.h"
+#include "task_knob_manager.h"
+#include "task_servo_manager.h"
+#include "task_serial.h"
 /*
                          Main application
  */
@@ -86,20 +87,24 @@ void main(void)
     const KnobConfig_t * knob_cfg = Knob_ConfigGet();
     Knob_Init(knob_cfg);
     
+    uint8_t i;
     while (1)
     {
-        // Add your application code
-        
-
-        uint16_t convertedValue;
-        
+        // Add your application code   
         Task_Battery_Manager();
-
         
-        convertedValue = Knob_Position_Read();
-        printf("chan3 %i ", convertedValue);
-        convertedValue = Rescale_Value(convertedValue,200,800, SERVO_DUTY_MIN, SERVO_DUTY_MAX);
-        Servomotor_Set_Position(SERVO1,convertedValue);
+        if(i >= 16)
+        {
+            Task_Knob_Manager();
+            i = 0;
+        }
+        else
+        {
+            ++i;
+        }
+        
+        Task_Serial();
+//      Task_Servo_Manager();
 #if 0 
         if (convertedValue > 250)
         {

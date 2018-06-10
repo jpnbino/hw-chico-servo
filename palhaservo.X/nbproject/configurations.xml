@@ -24,6 +24,9 @@
       <itemPath>servomotor_cfg.h</itemPath>
       <itemPath>utils.h</itemPath>
       <itemPath>task_battery_manager.h</itemPath>
+      <itemPath>protocol_bino.h</itemPath>
+      <itemPath>task_knob_manager.h</itemPath>
+      <itemPath>task_serial.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -54,6 +57,9 @@
       <itemPath>servomotor_cfg.c</itemPath>
       <itemPath>utils.c</itemPath>
       <itemPath>task_battery_manager.c</itemPath>
+      <itemPath>protocol_bino.c</itemPath>
+      <itemPath>task_knob_manager.c</itemPath>
+      <itemPath>task_serial.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"

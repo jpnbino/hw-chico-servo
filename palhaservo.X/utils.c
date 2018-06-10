@@ -78,7 +78,16 @@ uint16_t Rescale_Value (uint16_t x , uint16_t xa, uint16_t xb, uint16_t ya, uint
 		a = (yb - ya)*(x - xa)
 		b = (xb - xa)
 	*/
-	
+	//test input condition
+    if(x < xa)
+    {
+        x = xa;
+    }
+    else if ( x > xb)
+    {
+        x = xb;
+    }
+    
 	uint16_t y;
 	
 	//multiplication of two 16bits gives a 32bits integer
