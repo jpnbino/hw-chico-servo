@@ -88,6 +88,15 @@ void main(void)
     Knob_Init(knob_cfg);
     
     uint8_t i;
+    /**
+     * Inicia o módulo bluetooth
+     */
+    __delay_ms(1000);
+    printf("AT+INQ\r\n");
+    
+    __delay_ms(1000);
+    printf("AT+CONN1\r\n");
+    
     while (1)
     {
         // Add your application code   

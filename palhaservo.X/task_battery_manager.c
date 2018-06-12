@@ -57,7 +57,7 @@ void Task_Battery_Manager( void )
 	
 	voltage_value = Voltimeter_Read();
 	
-	if (voltage_value > LOW_BATTERY_VOLTAGE)
+	if (voltage_value < LOW_BATTERY_VOLTAGE)
 	{
 		IO_RA5_SetLow();
 	}

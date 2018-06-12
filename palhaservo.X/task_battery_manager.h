@@ -49,7 +49,7 @@
 the battery manager will throw a low battery alert.
 The value is in milivolts unit.
 */
-#define LOW_BATTERY_VOLTAGE 3800U
+#define LOW_BATTERY_VOLTAGE 3500U
 
 /**
   Section: Voltimeter Module APIs
