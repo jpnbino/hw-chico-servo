@@ -33,17 +33,21 @@
   Section: Included Files
 */
 #include "mcc_generated_files/mcc.h"
-#include "task_serial.h"
+#include "task_serial_rx.h"
 #include "protocol_bino.h"
 #include "servomotor.h"
+
+/**
+  Section: Function Prototypes
+*/
+void Receive_Pkt ( char rx_data_byte );
+void Process_Pkt ( void );
 
 /**
   Section: Macro Declarations
 */
 #define MAX_RX_STRING 10
 #define	END_OF_STRING 1
-
-
 
 enum{
 	STATE_START = 0,
@@ -77,11 +81,12 @@ volatile struct
 	uint8_t dado4;
 	uint8_t valido;
 } sol;
-/**
-  Section: Battery manager Module APIs
-*/
 
-void Task_Serial( void )
+
+/**
+  Section: Serial Receive Module APIs
+*/
+void Task_Serial_Rx( void )
 {	
 	/**
 	Polls for received data
@@ -106,9 +111,9 @@ void Receive_Pkt ( char rx_data_byte )
 
 	 /*switch( rxstate )
 	Verifica os caracteres recebidos e se formam um pacote de comando
-	válido do protocolo serial.
+	valido do protocolo serial.
 	
-	Formato de pacote válido:
+	Formato de pacote valido:
 	Pacote = { INICIO, COMANDO, DADOS[63], FIM };
 	*/
 	if(rx_data_byte == END_FLAG)

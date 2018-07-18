@@ -38,11 +38,14 @@
 #include "mcc_generated_files/mcc.h"
 #include "init.h"
 
+#include "app_palhaservo.h"
+
 #include "voltimeter_cfg.h"
 #include "voltimeter.h"
 
 #include "knob_cfg.h"
 #include "knob.h"
+
 /**
   Section: Macro Declarations
 */
@@ -71,49 +74,8 @@ void Init ( void )
     const KnobConfig_t * knob_cfg = Knob_ConfigGet();
     Knob_Init(knob_cfg);
     
-    volatile static uint8_t device_role;
-    
-    device_role = IO_RC1_GetValue();
-    if ( device_role == MASTER)
-    {
-        IO_RA5_SetLow();
-        __delay_ms(100);
-        IO_RA5_SetHigh();
-        __delay_ms(100);
-        IO_RA5_SetLow();
-        __delay_ms(100);
-        IO_RA5_SetHigh();
-        __delay_ms(100);
-    }
-    else if ( device_role == SLAVE )
-    {
-        IO_RA5_SetLow();
-        __delay_ms(50);
-        IO_RA5_SetHigh();
-        __delay_ms(50);
-        IO_RA5_SetLow();
-        __delay_ms(50);
-        IO_RA5_SetHigh();
-        __delay_ms(50);
-    }
-    
-    /**
-     * Inicia o módulo bluetooth
-     */
-    if ( device_role == MASTER)
-    {
-        __delay_ms(1000);
-        printf("AT+INQ\r\n");
-
-        __delay_ms(1000);
-        printf("AT+CONN1\r\n");
-    }
-
-
+    App_Palhaservo_Init(); 
 }
-
-
-
 /**
  End of File
 */

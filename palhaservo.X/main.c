@@ -44,11 +44,7 @@
 #include "mcc_generated_files/mcc.h"
 
 #include "init.h"
-
-#include "task_battery_manager.h"
-#include "task_knob_manager.h"
-#include "task_servo_manager.h"
-#include "task_serial.h"
+#include "app_palhaservo.h"
 
 /**
   Section: Main application
@@ -57,33 +53,9 @@ void main(void)
 {
     Init();
     
-    volatile static uint8_t device_role;
-    
-    device_role = IO_RC1_GetValue();
-    
     while (1)
     {
-        
-        if ( device_role == MASTER )
-        {
-            uint8_t i;
-            if(i >= 16)
-            {
-                Task_Knob_Manager();
-                i = 0;
-            }
-            else
-            {
-                ++i;
-            }
-        }
-        else if ( device_role == SLAVE )
-        {
-            Task_Servo_Manager();
-        }
-        Task_Serial();
-        Task_Battery_Manager();       
-
+        App_Palhaservo_Run();
     }
 }
 /**

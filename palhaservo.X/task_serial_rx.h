@@ -5,13 +5,15 @@
     Embedded Things
 
   @File Name
-    task_battery_manager.h
+    task_serial_rx.h
 
   @Summary
-     This is the reader file for the battery manager task.
+     This is the header file for the serial task receiver.
 
   @Description
-    This header file provides APIs for the battery manager task.
+    This header file provides APIs to run serial receive module.
+    
+ 
     Generation Information :
         Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs - 1.65.2
         Device            :  PIC16LF1824
@@ -25,8 +27,8 @@
     Copyright
 */
 
-#ifndef TASK_SERIAL_H
-#define TASK_SERIAL_H
+#ifndef TASK_SERIAL_RX_H
+#define TASK_SERIAL_RX_H
 
 /**
   Section: Included Files
@@ -47,18 +49,15 @@
 
 
 /**
-  Section: Voltimeter Module APIs
+  Section: Serial Receiver Module APIs
 */
 
 /**
   @Summary
-    Runs servomotor manager.
+    
 
   @Description
-    This routine reads a rotary potentiometer
-	position and then converts its position into
-	servomotor position and post a command for the servomotor
-	via serial.
+    
 
   @Preconditions
     None
@@ -74,14 +73,11 @@
 
   @Example
     <code>
-    Task_Servo_Manager();
+    Task_Serial_Rx();
     </code>
 */
-void Task_Serial( void );
+void Task_Serial_Rx( void );
 
-
-void Receive_Pkt ( char rx_data_byte );
-void Process_Pkt ( void );
 
 #ifdef __cplusplus  // Provide C++ Compatibility
 

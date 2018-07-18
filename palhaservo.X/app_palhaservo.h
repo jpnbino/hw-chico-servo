@@ -1,17 +1,17 @@
 /**
-  Init Module API Header File
+  Application Header File
 
   @Company
     Embedded Things
 
   @File Name
-    init.h
+    app_palhaservo.h
 
   @Summary
-     This is the initialization header file.
+    This file is a application header file.
 
   @Description
-    This header file provides APIs to perform proper application initialization.
+    This header file provides APIs to perform proper application calling.
 	
     Generation Information :
         Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs - 1.65.2
@@ -26,8 +26,8 @@
     Copyright
 */
 
-#ifndef INIT_H
-#define INIT_H
+#ifndef APP_PALHASERVO_H
+#define APP_PALHASERVO_H
 
 /**
   Section: Included Files
@@ -41,6 +41,22 @@
     extern "C" {
 
 #endif
+        
+/**
+  Section: Macro Declarations
+*/
+        
+/**
+ * Defines if the device will act as a master or a device
+ */
+typedef enum{
+	MASTER,
+	SLAVE,
+	TEST,
+    NOT_CONFIGURED,
+    MAX_MODE,
+}device_mode_t;
+
 
 /**
   Section: Init Module APIs
@@ -70,8 +86,10 @@
 	
     </code>
 */
-void Init ( void );
-
+void    App_Palhaservo_Init ( void );
+void    App_Palhaservo_Run  ( void );
+void    Device_Set_Mode     (uint8_t mode);
+uint8_t Device_Get_Mode     (void);
 
 #ifdef __cplusplus  // Provide C++ Compatibility
 
