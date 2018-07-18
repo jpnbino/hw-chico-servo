@@ -25,12 +25,15 @@
 /*
     Copyright
 */
+
 /**
   Section: Abbreviation
     vref stands for Voltage reference
 */
+
+
 /**
-  Section: Included Files
+ *   Section: Included Files
 */
 #include "protocol_bino.h"
 #include "mcc_generated_files/mcc.h"

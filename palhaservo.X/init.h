@@ -1,17 +1,18 @@
 /**
-  Voltimeter Module API Header File
+  Init Module API Header File
 
   @Company
     Embedded Things
 
   @File Name
-    task_battery_manager.h
+    init.h
 
   @Summary
-     This is the reader file for the battery manager task.
+     This is the initialization header file.
 
   @Description
-    This header file provides APIs for the battery manager task.
+    This header file provides APIs to perform proper application initialization.
+	
     Generation Information :
         Product Revision  :  PIC10 / PIC12 / PIC16 / PIC18 MCUs - 1.65.2
         Device            :  PIC16LF1824
@@ -25,8 +26,8 @@
     Copyright
 */
 
-#ifndef TASK_SERIAL_H
-#define TASK_SERIAL_H
+#ifndef INIT_H
+#define INIT_H
 
 /**
   Section: Included Files
@@ -42,46 +43,44 @@
 #endif
 
 /**
-  Section: Macro Declarations
-*/
+ * Defines if the device will act as a master or a device
+ */
+typedef enum{
+    MASTER  = 0,
+    SLAVE   = 1,
+}device_role_t;
 
 
 /**
-  Section: Voltimeter Module APIs
+  Section: Init Module APIs
 */
 
 /**
   @Summary
-    Runs servomotor manager.
+    Initialize application
 
   @Description
-    This routine reads a rotary potentiometer
-	position and then converts its position into
-	servomotor position and post a command for the servomotor
-	via serial.
+    This routine initializes all the necessary components so that the application
+	runs.
 
   @Preconditions
-    None
-
-  @Param
-    None
+    none
 
   @Returns
-    None
+    none
 
-  @Comment
-    None
+  @Param
+    none
 
   @Example
     <code>
-    Task_Servo_Manager();
+	// in main function
+    Init();
+	
     </code>
 */
-void Task_Serial( void );
+void Init ( void );
 
-
-void Receive_Pkt ( char rx_data_byte );
-void Process_Pkt ( void );
 
 #ifdef __cplusplus  // Provide C++ Compatibility
 
@@ -89,7 +88,7 @@ void Process_Pkt ( void );
 
 #endif
 
-#endif	//ADC_H
+#endif	//INIT_H
 /**
  End of File
 */

@@ -43,100 +43,47 @@
 
 #include "mcc_generated_files/mcc.h"
 
-#include "voltimeter_cfg.h"
-#include "voltimeter.h"
-
-#include "knob_cfg.h"
-#include "knob.h"
-
-#include "servomotor_cfg.h"
-#include "servomotor.h"
+#include "init.h"
 
 #include "task_battery_manager.h"
 #include "task_knob_manager.h"
 #include "task_servo_manager.h"
 #include "task_serial.h"
-/*
-                         Main application
+
+/**
+  Section: Main application
  */
 void main(void)
 {
-    // initialize the device
-    SYSTEM_Initialize();
-
-    // When using interrupts, you need to set the Global and Peripheral Interrupt Enable bits
-    // Use the following macros to:
-
-    // Enable the Global Interrupts
-    INTERRUPT_GlobalInterruptEnable();
-
-    // Enable the Peripheral Interrupts
-    INTERRUPT_PeripheralInterruptEnable();
-
-    // Disable the Global Interrupts
-    //INTERRUPT_GlobalInterruptDisable();
-
-    // Disable the Peripheral Interrupts
-    //INTERRUPT_PeripheralInterruptDisable();
+    Init();
     
-    printf("\n\r here we go \n\r ");
+    volatile static uint8_t device_role;
     
-    const VoltimeterConfig_t * voltimeter_cfg = Voltimeter_ConfigGet();
-    Voltimeter_Init(voltimeter_cfg);
-    
-    const KnobConfig_t * knob_cfg = Knob_ConfigGet();
-    Knob_Init(knob_cfg);
-    
-    uint8_t i;
-    /**
-     * Inicia o módulo bluetooth
-     */
-    __delay_ms(1000);
-    printf("AT+INQ\r\n");
-    
-    __delay_ms(1000);
-    printf("AT+CONN1\r\n");
+    device_role = IO_RC1_GetValue();
     
     while (1)
     {
-        // Add your application code   
-        Task_Battery_Manager();
         
-        if(i >= 16)
+        if ( device_role == MASTER )
         {
-            Task_Knob_Manager();
-            i = 0;
+            uint8_t i;
+            if(i >= 16)
+            {
+                Task_Knob_Manager();
+                i = 0;
+            }
+            else
+            {
+                ++i;
+            }
         }
-        else
+        else if ( device_role == SLAVE )
         {
-            ++i;
+            Task_Servo_Manager();
         }
-        
         Task_Serial();
-//      Task_Servo_Manager();
-#if 0 
-        if (convertedValue > 250)
-        {
-            EPWM1_LoadDutyValue(30);
-        }
-        else
-        {
-            EPWM1_LoadDutyValue(40);   
-        }     
-#endif
-#if 0 
-        uint8_t i = 0 ;
-        for (i=30;i<=61;i=i++)             // do a smooth rotation from right to left
-        {
-            EPWM1_LoadDutyValue(i);
-            mydelay_ms(20);
-        }
-        for (i=61;i>=30;i=i--)             // do a smooth rotation from right to left
-        {
-            EPWM1_LoadDutyValue(i);
-            mydelay_ms(20);
-        }
-#endif
+        Task_Battery_Manager();       
+
     }
 }
 /**

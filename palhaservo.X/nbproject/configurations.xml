@@ -27,6 +27,8 @@
       <itemPath>protocol_bino.h</itemPath>
       <itemPath>task_knob_manager.h</itemPath>
       <itemPath>task_serial.h</itemPath>
+      <itemPath>task_servo_manager.h</itemPath>
+      <itemPath>init.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -60,6 +62,8 @@
       <itemPath>protocol_bino.c</itemPath>
       <itemPath>task_knob_manager.c</itemPath>
       <itemPath>task_serial.c</itemPath>
+      <itemPath>task_servo_manager.c</itemPath>
+      <itemPath>init.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"

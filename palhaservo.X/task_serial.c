@@ -36,6 +36,7 @@
 #include "task_serial.h"
 #include "protocol_bino.h"
 #include "servomotor.h"
+
 /**
   Section: Macro Declarations
 */
@@ -174,7 +175,7 @@ void Receive_Pkt ( char rx_data_byte )
 //mudar para processa pacote
 void Process_Pkt ( void )
 {
-	/*Se o formato do pacote recebido está correto*/
+	/*If format pkt is not valid*/
     if(!sol.valido) 
     {
 		return;
@@ -187,13 +188,16 @@ void Process_Pkt ( void )
 	switch ( sol.comando )
 	{
 		case CMD_SERVO:
-            servo_pos = (rx_string[0]<<8)|(sol.item);
-             printf("\n PWM POS %i ", servo_pos);
-			Servomotor_Set_Position(SERVO1,servo_pos);
+                servo_pos = (rx_string[0]<<8)|(sol.item);
+               
+                /* useful debug information*/
+                //printf("\n PWM POS %i ", servo_pos);
+                
+                Servomotor_Set_Position(SERVO1,servo_pos);
 			break;
 
 	}
-	//Reinicia pacote
+	//Reset pkt
 	sol.inicio = 0;
 	sol.comando = 0;
 	sol.item = 0;
