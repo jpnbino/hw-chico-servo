@@ -64,9 +64,7 @@ void Init ( void )
     INTERRUPT_GlobalInterruptEnable();
 
     // Enable the Peripheral Interrupts
-    INTERRUPT_PeripheralInterruptEnable();
-    
-    printf("\n\r START \n\r ");
+    INTERRUPT_PeripheralInterruptEnable(); 
     
     const VoltimeterConfig_t * voltimeter_cfg = Voltimeter_ConfigGet();
     Voltimeter_Init(voltimeter_cfg);
@@ -75,6 +73,8 @@ void Init ( void )
     Knob_Init(knob_cfg);
     
     App_Palhaservo_Init(); 
+    
+    printf("\n\r START \n\r ");
 }
 /**
  End of File

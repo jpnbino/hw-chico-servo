@@ -32,6 +32,16 @@
 */
 
 /**
+  Section: Abbreviation
+
+*/
+enum{
+    NOT_CONNECTED = 0,
+    CONNECTED = 1,
+};
+
+
+/**
   Section: Included Files
 */
 #include "mcc_generated_files/mcc.h"
@@ -64,36 +74,63 @@ void App_Palhaservo_Init ( void )
      * Inicia o módulo bluetooth
      */
     if ( Device_Get_Mode() == MASTER)
+    {   
+        volatile uint8_t aux_device_connected = 0;
+        
+        while ( aux_device_connected == NOT_CONNECTED )
+        {
+            __delay_ms(1000);
+            printf("AT+DEFAULT\r\n");
+
+            __delay_ms(1000);
+            printf("AT+POWE3\r\n");
+            
+            __delay_ms(1000);
+            printf("AT+ROLE1\r\n");
+
+            __delay_ms(1000);
+            printf("AT+INQ\r\n");
+
+            __delay_ms(5000);
+            printf("AT+CONN1\r\n");
+            __delay_ms(500);
+            aux_device_connected = IO_RC3_GetValue();
+        }
+    }
+    else if( Device_Get_Mode() == SLAVE )
     {
         __delay_ms(1000);
-        printf("AT+INQ\r\n");
+        printf("AT+DEFAULT\r\n");
+        
+        __delay_ms(1000);
+        printf("AT+POWE3\r\n");
 
         __delay_ms(1000);
-        printf("AT+CONN1\r\n");
+        printf("AT+ROLE0\r\n"); 
     }
 }
 
 void App_Palhaservo_Run( void )
 {
-        if ( Device_Get_Mode() == MASTER )
+    if ( Device_Get_Mode() == MASTER )
+    {
+        uint8_t i;
+        if(i >= 16)
         {
-            uint8_t i;
-            if(i >= 16)
-            {
-                Task_Knob_Manager();
-                i = 0;
-            }
-            else
-            {
-                ++i;
-            }
+            Task_Knob_Manager();
+            i = 0;
         }
-        else if ( Device_Get_Mode() == SLAVE )
+        else
         {
-            Task_Servo_Manager();
+            ++i;
         }
-        Task_Serial_Rx();
-        Task_Battery_Manager();       
+    }
+    else if ( Device_Get_Mode() == SLAVE )
+    {
+        Task_Servo_Manager();
+    }
+    Task_Serial_Rx();
+    Task_Battery_Manager();       
 }
 
 void Device_Set_Mode (uint8_t mode)

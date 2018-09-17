@@ -50,8 +50,8 @@
  * Defines if the device will act as a master or a device
  */
 typedef enum{
-	MASTER,
 	SLAVE,
+	MASTER,
 	TEST,
     NOT_CONFIGURED,
     MAX_MODE,
