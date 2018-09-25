@@ -2,7 +2,10 @@
 
 The project was designed based on the MCU PIC16LF1824. Its intent is to control the ChicoServo board( [link to PCBs repo](https://bitbucket.org/jpnbino/hw_palha_servo/src/master/) ) so that two palhaservo boards can communicate with each other. One board is going to perform master role while the other will perform the slave role. The master is going to read a rotary potentiometer attached to the board and then translate its position into a servomotor position attached to the slave board.
 
-![System overview](https://lh3.googleusercontent.com/-jT2j34XCdvs/W6qo9w_tO_I/AAAAAAAAHq8/VbPxKEYenjMH2JVU4tIfljCSoPwHgT1_QCL0BGAs/w530-d-h331-n-rw/c67a32fa-b86f-4673-8a85-4f221cb39394.png)
+![System overview](https://i.imgur.com/gyzdevEl.png)
+
+### Important Note###
+As there are many different seril bluetooth modules in the market such as HC-05, HC-06, Hm-10 and so on ... I didn't implemented code for connecting them automatically. So, two have the firmware properly working, you have to configure the master bluetooth module to automatically connect to a slave module, this can be achieved through a serial terminal on a PC and a USB-to-UART converter or and arduino. 
 
 ### Firmware Funcionality###
 * Drives a low battery warn LED;
