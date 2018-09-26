@@ -21,9 +21,6 @@
 /*
     Copyright
 */
-
-#include "mcc_generated_files/mcc.h"
-
 #include "init.h"
 #include "app_palhaservo.h"
 
@@ -37,6 +34,8 @@ void main(void)
     while (1)
     {
         App_Palhaservo_Run();
+        
+        CLRWDT();
     }
 }
 /**
