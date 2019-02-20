@@ -150,6 +150,10 @@ void App_Palhaservo_Run( void )
             current_state = ST_BATTERY_TASK;
 
             break;
+        
+        default:
+            
+        break;
     } 
 }    
 
