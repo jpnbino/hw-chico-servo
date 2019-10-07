@@ -5,7 +5,9 @@ The project was designed based on the MCU PIC16LF1824. Its intent is to control 
 ![System overview](https://i.imgur.com/gyzdevEl.png)
 
 ### Important Note###
-As there are many different seril bluetooth modules in the market such as HC-05, HC-06, Hm-10 and so on ... I didn't implemented code for connecting them automatically. So, two have the firmware properly working, you have to configure the master bluetooth module to automatically connect to a slave module, this can be achieved through a serial terminal on a PC and a USB-to-UART converter or and arduino. 
+As there are many different seril bluetooth modules in the market such as HC-05, HC-06, Hm-10 and so on ... I didn't implemented code for connecting them automatically. So, in order to have the firmware properly working, you have to configure the master bluetooth module to automatically connect to a slave module, this can be achieved through a serial terminal on a PC and a USB-to-UART converter or and arduino. 
+
+The role of the board is defined in hardware, whether master or slave.
 
 ### Firmware Funcionality###
 * Drives a low battery warn LED;
