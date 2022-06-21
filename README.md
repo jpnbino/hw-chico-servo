@@ -1,6 +1,6 @@
-# PALHASERVO #
+# Chico servo #
 
-The project was designed based on the MCU PIC16LF1824. Its intent is to control the ChicoServo board( [link to PCBs repo](https://bitbucket.org/jpnbino/hw_palha_servo/src/master/) ) so that two palhaservo boards can communicate with each other. One board is going to perform master role while the other will perform the slave role. The master is going to read a rotary potentiometer attached to the board and then translate its position into a servomotor position attached to the slave board.
+The project was designed based on the MCU PIC16LF1824. It's intent is to control the ChicoServo board( [link to PCBs repo](https://bitbucket.org/jpnbino/hw_palha_servo/src/master/) ) so that two palhaservo boards can communicate with each other. One board is going to perform master role while the other will perform the slave role. The master is going to read a rotary potentiometer attached to the board and then translate its position into a servomotor position attached to the slave board.
 
 ![System overview](https://i.imgur.com/gyzdevEl.png)
 
